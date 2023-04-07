@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
       <h1>Welcome to File Share Server</h1>
       <h2> Note this tool made by PawitSahare and this udpfileshare use for share 8gb file only and package loss guarantee is 55% on low level network env </h2>
       <ul>
-        <li><a href="/download/${filenames[0]}">${filenames[0]}</a></li>
-        <li><a href="/download/${filenames[1]}">${filenames[1]}</a></li>
-        <li><a href="/download/${filenames[2]}">${filenames[2]}</a></li>
+        <li><a href="https://github.com/pawitpr/speedtest-udp/raw/main/fileshare-udp.7z">${filenames[0]}</a></li>
+        <li><a href="https://github.com/pawitpr/speedtest-udp/raw/main/fileshare-udp.zip">${filenames[1]}</a></li>
+        <li><a href="https://github.com/pawitpr/speedtest-udp/raw/main/fileshare-udp.tar.gz">${filenames[2]}</a></li>
       </ul>
     `;
 
