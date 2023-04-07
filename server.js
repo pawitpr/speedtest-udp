@@ -1,12 +1,49 @@
-const handler = require('serve-handler');
-const http = require('http');
+const express = require('express');
+const path = require('path');
 
-const server = http.createServer((request, response) => {
-  // You pass two more arguments for config and middleware
-  // More details here: https://github.com/vercel/serve-handler#options
-  return handler(request, response);
+const app = express();
+const port = 8080;
+
+// Serve static files from a directory
+app.use(express.static(path.join(__dirname, 'files')));
+
+// Define the route for the home page
+app.get('/', (req, res) => {
+  try {
+    // Get the filenames of the three files
+    const filenames = ['fileshare-udp.7z', 'fileshare-udp.zip', 'fileshare-udp.tar.gz'];
+
+    // Generate HTML content for the home page
+    const html = `
+      <h1>Welcome to File Share Server</h1>
+      <ul>
+        <li><a href="/download/${filenames[0]}">${filenames[0]}</a></li>
+        <li><a href="/download/${filenames[1]}">${filenames[1]}</a></li>
+        <li><a href="/download/${filenames[2]}">${filenames[2]}</a></li>
+      </ul>
+    `;
+
+    // Send the HTML content as the response
+    res.send(html);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
 });
 
-server.listen(1000, () => {
-  console.log('Running at http://localhost:1000');
+// Define the route for downloading files
+app.get('/download/:filename', (req, res) => {
+  try {
+    // Get the requested filename from the URL parameters
+    const filename = req.params.filename;
+
+    // Send the requested file as an attachment
+    res.download(path.join(__dirname, 'files', filename));
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
