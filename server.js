@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
     // Generate HTML content for the home page
     const html = `
       <h1>Welcome to File Share Server</h1>
+      <h2> Note this tool made by PawitSahare and this udpfileshare use for share 8gb file only and package loss guarantee is 55% on low level network env </h2>
       <ul>
         <li><a href="/download/${filenames[0]}">${filenames[0]}</a></li>
         <li><a href="/download/${filenames[1]}">${filenames[1]}</a></li>
